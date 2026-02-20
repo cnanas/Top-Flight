@@ -88,7 +88,7 @@ export default function CartSidebar() {
                   <Link
                     href="/products"
                     onClick={closeCart}
-                    className="mt-2 inline-flex items-center justify-center rounded-full bg-brand-500 px-6 py-3 text-sm font-bold text-white hover:bg-brand-600 transition-colors"
+                    className="mt-2 inline-flex items-center justify-center rounded-[5px] bg-brand-500 px-6 py-3 text-sm font-bold text-white hover:bg-brand-600 transition-colors"
                   >
                     Shop Now
                   </Link>

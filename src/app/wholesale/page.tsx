@@ -283,7 +283,7 @@ export default function WholesalePage() {
                 type="submit"
                 disabled={status === 'loading'}
                 className={cn(
-                  'w-full rounded-lg bg-brand-500 px-6 py-4 text-base font-semibold text-white',
+                  'w-full rounded-[5px] bg-brand-500 px-6 py-4 text-base font-semibold text-white',
                   'hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2',
                   'disabled:opacity-60 transition-colors'
                 )}

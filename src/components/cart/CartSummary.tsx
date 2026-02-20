@@ -57,7 +57,7 @@ export default function CartSummary({ cart }: CartSummaryProps) {
       <button
         onClick={checkout}
         disabled={isLoading}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 py-4 font-bold text-white hover:bg-brand-600 active:bg-brand-700 transition-all duration-200 shadow-brand hover:shadow-brand-lg disabled:opacity-70 disabled:cursor-not-allowed text-base"
+        className="flex w-full items-center justify-center gap-2 rounded-[5px] bg-brand-500 py-4 font-bold text-white hover:bg-brand-600 active:bg-brand-700 transition-all duration-200 shadow-brand hover:shadow-brand-lg disabled:opacity-70 disabled:cursor-not-allowed text-base"
       >
         {isLoading ? (
           <Loader2 size={18} className="animate-spin" />

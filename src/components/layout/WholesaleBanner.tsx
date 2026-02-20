@@ -21,7 +21,7 @@ export default function WholesaleBanner() {
         </p>
         <Link
           href="/wholesale"
-          className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-base font-bold text-brand-600 hover:bg-white/95 transition-colors shadow-lg"
+          className="mt-8 inline-flex items-center justify-center rounded-[5px] bg-white px-8 py-4 text-base font-bold text-brand-600 hover:bg-white/95 transition-colors shadow-lg"
         >
           Request Info
         </Link>

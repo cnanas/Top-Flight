@@ -125,7 +125,7 @@ export default function Testimonials() {
           transition={{ delay: 0.4 }}
           className="mt-12 text-center"
         >
-          <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-3 shadow-card">
+          <div className="inline-flex items-center gap-3 rounded-[5px] border border-slate-200 bg-white px-6 py-3 shadow-card">
             <div className="flex">
               {[1, 2, 3, 4, 5].map((s) => (
                 <Star key={s} className="h-4 w-4 fill-gold-500 text-gold-500" />

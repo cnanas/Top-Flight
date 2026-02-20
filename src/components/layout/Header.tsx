@@ -200,7 +200,7 @@ export default function Header() {
                     setSearchOpen(true)
                     setMobileMenuOpen(false)
                   }}
-                  className="flex w-full items-center justify-center gap-2 rounded-full border-2 border-brand-500 px-6 py-3 font-bold text-brand-500 hover:bg-brand-50 transition-colors"
+                  className="flex w-full items-center justify-center gap-2 rounded-[5px] border-2 border-brand-500 px-6 py-3 font-bold text-brand-500 hover:bg-brand-50 transition-colors"
                 >
                   <Search size={20} />
                   Search

@@ -27,7 +27,8 @@ export default function Hero() {
         animate="visible"
         className="relative z-10 section-container pt-24 pb-20"
       >
-        <div>
+        <div className="grid grid-cols-3 gap-4">
+          <div className="col-span-3">
           <motion.div variants={fadeInUp} className="mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
               Premium Kava — 1,800mg Proprietary Blend
@@ -38,7 +39,8 @@ export default function Hero() {
             variants={fadeInUp}
             className="font-inter text-6xl font-extrabold tracking-tight leading-none text-white sm:text-7xl lg:text-8xl mb-6"
           >
-            Elevate Your Energy.{' '}
+            Elevate Your Energy.
+            <br />
             <span className="text-gold-300">Stay In Control.</span>
           </motion.h1>
 
@@ -52,14 +54,14 @@ export default function Hero() {
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/products"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-bold text-brand-600 hover:bg-brand-50 transition-all duration-300 shadow-lg"
+              className="inline-flex items-center justify-center gap-2 rounded-[5px] bg-white px-8 py-4 text-lg font-bold text-brand-600 hover:bg-brand-50 transition-all duration-300 shadow-lg"
             >
               Shop Now
               <ArrowRight size={20} />
             </Link>
             <Link
               href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/40 px-8 py-4 text-lg font-semibold text-white hover:border-white hover:bg-white/10 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 rounded-[5px] border-2 border-white/40 px-8 py-4 text-lg font-semibold text-white hover:border-white hover:bg-white/10 transition-all duration-300"
             >
               See How It Works
             </Link>
@@ -81,6 +83,7 @@ export default function Hero() {
               <p className="text-xs text-white/60 mt-0.5 font-medium">Easy shot format</p>
             </div>
           </motion.div>
+          </div>
         </div>
       </motion.div>
 

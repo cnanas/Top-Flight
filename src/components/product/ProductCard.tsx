@@ -133,6 +133,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
               availableForSale={activeVariant.availableForSale}
               size="md"
               tier={isGold ? 'premium' : 'standard'}
+              showQuantity={false}
             />
           </div>
         )}

@@ -66,7 +66,7 @@ export default function CTABanner() {
           >
             <Link
               href="/products"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-lg font-bold text-brand-600 hover:bg-brand-50 transition-all duration-300 shadow-lg"
+              className="group inline-flex items-center justify-center gap-2 rounded-[5px] bg-white px-8 py-4 text-lg font-bold text-brand-600 hover:bg-brand-50 transition-all duration-300 shadow-lg"
             >
               Shop Top Flight
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
