@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/* ── Theme Tokens (Tailwind v4) ───────────────────────────── */
+@theme {
+  /* Standard tier — Brand Red */
+  --color-brand-50:  #FFF5F3;
+  --color-brand-100: #FDE8E4;
+  --color-brand-200: #FBC4BC;
+  --color-brand-300: #F79083;
+  --color-brand-400: #EF5642;
+  --color-brand-500: #E32402;
+  --color-brand-600: #C41F00;
+  --color-brand-700: #A61A00;
+  --color-brand-800: #7A1300;
+  --color-brand-900: #4F0D00;
+
+  /* Premium tier — Gold */
+  --color-gold-300: #FDE68A;
+  --color-gold-400: #F5C842;
+  --color-gold-500: #E8B520;
+  --color-gold-600: #C99B0E;
+  --color-gold-700: #A37A00;
+
+  /* Dark base (kept for cart/sidebar/overlay) */
+  --color-dark-700: #2A2A2A;
+  --color-dark-800: #1F1F1F;
+  --color-dark-900: #141414;
+  --color-dark-950: #0D0D0D;
+
+  /* Font families — all Inter (sans-serif) */
+  --font-inter: var(--font-inter-var), system-ui, sans-serif;
+
+  /* Box shadows */
+  --shadow-brand:       0 4px 24px rgba(227, 36, 2, 0.30);
+  --shadow-brand-lg:    0 8px 40px rgba(227, 36, 2, 0.45);
+  --shadow-gold:        0 4px 24px rgba(245, 200, 66, 0.25);
+  --shadow-gold-lg:     0 8px 40px rgba(245, 200, 66, 0.35);
+  --shadow-card:        0 2px 16px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover:  0 8px 32px rgba(0, 0, 0, 0.14);
+
+  /* Custom height for logo */
+  --height-50: 3.125rem; /* 50px */
+
+  /* Breakpoints */
+  --breakpoint-xs: 30rem; /* 480px */
+
+  /* Animations */
+  --animate-fade-in:         fadeIn 0.5s ease-in-out;
+  --animate-slide-up:        slideUp 0.4s ease-out;
+  --animate-slide-in-right:  slideInRight 0.3s ease-out;
+  --animate-pulse-brand:     pulseBrand 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-pulse-gold:      pulseGold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ── Keyframes ────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes pulseBrand {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(227, 36, 2, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(227, 36, 2, 0); }
+}
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 200, 66, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(245, 200, 66, 0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-inter text-slate-900 antialiased bg-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-inter;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+}
+
+/* ── Component Classes ────────────────────────────────────── */
+@layer components {
+  .section-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white border border-slate-100 shadow-card transition-all duration-300 hover:shadow-card-hover;
+  }
+
+  .card-standard {
+    @apply rounded-2xl bg-white border border-slate-200 shadow-card transition-all duration-300 hover:border-brand-500/40 hover:shadow-brand;
+  }
+
+  .card-premium {
+    @apply rounded-2xl bg-white border border-slate-200 shadow-card transition-all duration-300 hover:border-gold-400/40 hover:shadow-gold;
+  }
+
+  .badge-standard {
+    @apply inline-flex items-center rounded-full bg-brand-500/10 border border-brand-500/20 px-3 py-1 text-xs font-semibold text-brand-500;
+  }
+
+  .badge-premium {
+    @apply inline-flex items-center rounded-full bg-gold-500/10 border border-gold-500/20 px-3 py-1 text-xs font-semibold text-gold-600;
+  }
+
+  .overlay {
+    @apply fixed inset-0 z-40 bg-black/50 backdrop-blur-sm;
+  }
+}
+
+/* ── Utilities ────────────────────────────────────────────── */
+@layer utilities {
+  .h-50 {
+    height: var(--height-50);
+  }
+
+  .animate-marquee {
+    animation: marquee 35s linear infinite;
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(to right, var(--color-brand-500), var(--color-brand-700));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(to right, var(--color-gold-400), var(--color-gold-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-brand {
+    background-image: linear-gradient(135deg, #E32402 0%, #C41F00 100%);
+  }
+
+  .bg-gradient-gold {
+    background-image: linear-gradient(135deg, #F5C842 0%, #C99B0E 100%);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
