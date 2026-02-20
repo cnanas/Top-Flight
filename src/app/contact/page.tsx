@@ -1,198 +1,159 @@
 'use client'
 
-import { useState } from 'react'
-import { Mail, MapPin, Clock } from 'lucide-react'
-import { buttonVariants } from '@/lib/variants'
-import { cn } from '@/lib/utils'
+import Link from 'next/link'
+import { ChevronDown } from 'lucide-react'
 
-const CONTACT_INFO = [
-  { icon: Mail, label: 'Email Us', value: 'hello@topflightboost.com' },
-  { icon: MapPin, label: 'Location', value: 'United States' },
-  { icon: Clock, label: 'Response Time', value: 'Within 24 hours' },
+const FAQ_ITEMS = [
+  {
+    question: 'What ingredients are in Top Flight, and how do they contribute to its effects?',
+    defaultOpen: true,
+    answer: (
+      <p>
+        For detailed information about our key ingredients and the science of how they function, check out our{' '}
+        <Link href="/#ingredients" className="text-brand-500 hover:text-brand-600 underline font-medium">
+          Learn page for detail info
+        </Link>.
+      </p>
+    ),
+  },
+  {
+    question: 'How should I take Top Flight for the best results?',
+    defaultOpen: false,
+    answer: (
+      <>
+        <p>
+          In addition to following all directions on the packaging and as follows, it&apos;s best to cycle on and off all cognitive, mood and enhancing supplements. We suggest at most 5 days on, 2 days off.
+        </p>
+        <p>
+          <strong>DIRECTIONS:</strong> For the Ultimate Focus, Energy, Mood Enhancement <strong>CAPSULES:</strong> take 1–2 capsules on an empty stomach 30 minutes prior to desired effects. <strong>LIQUID SHOTS:</strong> take 1/2 bottle on an empty stomach 30 minutes prior to desired effects.
+        </p>
+        <p>
+          <strong>WARNINGS: Do not exceed 4 CAPSULES in 24 hours -OR- 2 BOTTLES in 24 hours, or more than one bottle every 6 hours.</strong>
+        </p>
+        <p>
+          <strong>Do not take if you are under 18 years of age, nursing, pregnant or under medical care. Contains caffeine equivalent to about one cup of premium coffee and is not for those sensitive to caffeine. Alcohol may intensify effects. USE WITH CAUTION.</strong>
+        </p>
+        <p>
+          <em><strong>*This product and these statements have not been evaluated by the FDA, and is not intended to treat, cure, or prevent disease.</strong></em>
+        </p>
+      </>
+    ),
+  },
+  {
+    question: 'What makes Top Flight different from other mood and relaxation supplements on the market?',
+    defaultOpen: false,
+    answer: (
+      <p>
+        We don&apos;t rely on caffeine in the Top Flight formula for a false sense of mental and physical boost. Traditional energy drinks or supplements often rely on only caffeine, yet caffeine has been shown to not provide energy. Caffeine merely blocks the neurological signals from the brain that tell us how tired we are. When the caffeine wears off, our brains &apos;catch up&apos; to how tired we really are and have been all along, aka &apos;The Crash&apos;. When only the body is &apos;revved&apos;, users experience the &apos;jitters&apos;, as the brain is often still working at a snail&apos;s pace. <strong>Since Top Flight is formulated to balance the brain and body, there are no jitters or crash.</strong> In fact, most users report they don&apos;t even notice it wears off, only that they eventually find themselves where they started, not worse, like other caffeine-based products leave them. As we say, &quot;Top Flight is Next Level Focus, <span className="underline">No Crash</span>&quot;.
+      </p>
+    ),
+  },
+  {
+    question: 'Is Top Flight backed by scientific research?',
+    defaultOpen: false,
+    answer: (
+      <p>
+        Each ingredient in Top Flight has been thoroughly researched to assure safe levels in every serving and that they show results for their intended function.
+      </p>
+    ),
+  },
+  {
+    question: 'Where can I purchase Top Flight and what is the pricing?',
+    defaultOpen: false,
+    answer: (
+      <p>
+        MSRP $8. Top Flight is still growing distribution partners. If you are interested please{' '}
+        <Link href="/wholesale" className="text-brand-500 hover:text-brand-600 underline font-medium">
+          contact us
+        </Link>.
+      </p>
+    ),
+  },
+  {
+    question: 'Can I use Top Flight with other supplements or medications?',
+    defaultOpen: false,
+    answer: (
+      <p>
+        The potential list of &apos;other supplements or medications&apos; is vast therefore we&apos;re unable to address each and every one. It&apos;s always recommended to speak with your medical or health practitioner when unsure of how any new product may, or may not, interact with anything currently being taken.
+      </p>
+    ),
+  },
+  {
+    question: 'What is the return and refund policy for Top Flight?',
+    defaultOpen: false,
+    answer: (
+      <p>
+        We will refund any unused or unopened product purchased at retail pricing so long as it is submitted as per our{' '}
+        <Link href="/terms" className="text-brand-500 hover:text-brand-600 underline font-medium">
+          terms and conditions of sale
+        </Link>.
+      </p>
+    ),
+  },
+  {
+    question: 'Where is the product made?',
+    defaultOpen: false,
+    answer: (
+      <p>
+        Top Flight is proudly manufactured in the USA, adhering to the highest quality and safety standards. We source our ingredients from reputable suppliers to ensure premium quality.
+      </p>
+    ),
+  },
+  {
+    question: 'How quickly will I experience results?',
+    defaultOpen: false,
+    answer: (
+      <p>
+        Results may vary from person to person. Some users report an improvement in focus and mood shortly after taking Top Flight while for others the full effects may take an hour for onset. Individual responses can depend on factors like metabolism and diet.
+      </p>
+    ),
+  },
+  {
+    question: 'Is Top Flight habit-forming?',
+    defaultOpen: false,
+    answer: (
+      <p>
+        Top Flight is not habit-forming when used as directed. It contains ingredients that enhance focus and cognition without the addictive qualities often associated with pharmaceuticals. It&apos;s essential to follow the recommended directions and not exceed it to maintain responsible use.
+      </p>
+    ),
+  },
 ]
 
-export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMsg, setErrorMsg] = useState('')
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('loading')
-    setErrorMsg('')
-
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data.error ?? 'Something went wrong')
-      }
-      setStatus('success')
-      setForm({ name: '', email: '', subject: '', message: '' })
-    } catch (err) {
-      setStatus('error')
-      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong')
-    }
-  }
-
+export default function FAQPage() {
   return (
     <div className="min-h-screen bg-white pt-20">
-      {/* Header */}
       <section className="py-16 bg-brand-600">
         <div className="section-container text-center">
           <p className="font-inter text-sm font-bold uppercase tracking-widest text-white/70 mb-4">
-            Get in Touch
+            Help Center
           </p>
-          <h1 className="font-inter text-5xl font-extrabold tracking-tight text-white mb-4">Contact Us</h1>
+          <h1 className="font-inter text-5xl font-extrabold tracking-tight text-white mb-4">
+            Frequently Asked Questions
+          </h1>
           <p className="text-white/75 max-w-xl mx-auto leading-relaxed">
-            Have a question about your order, our products, or wholesale opportunities? We&apos;re
-            here to help.
+            Everything you need to know about Top Flight — ingredients, usage, and more.
           </p>
         </div>
       </section>
 
       <section className="section-padding">
-        <div className="section-container">
-          <div className="grid gap-12 lg:grid-cols-3">
-            {/* Contact info */}
-            <div className="space-y-6">
-              {CONTACT_INFO.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-brand-500/10 border border-brand-500/20">
-                    <Icon className="h-5 w-5 text-brand-500" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-900 text-sm">{label}</p>
-                    <p className="text-slate-500 text-sm mt-0.5">{value}</p>
-                  </div>
+        <div className="section-container max-w-2xl mx-auto">
+          <div className="space-y-2">
+            {FAQ_ITEMS.map((item) => (
+              <details
+                key={item.question}
+                open={item.defaultOpen}
+                className="group rounded-xl border border-slate-200 bg-slate-50/50 overflow-hidden"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-5 py-4 font-semibold text-slate-900 hover:bg-slate-100/50 transition-colors [&::-webkit-details-marker]:hidden">
+                  {item.question}
+                  <ChevronDown size={18} className="text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="px-5 pb-4 pt-0 text-slate-600 text-sm leading-relaxed border-t border-slate-100 space-y-3 [&_p]:mb-0 [&_p:last-child]:mb-0 [&_a]:font-medium">
+                  {item.answer}
                 </div>
-              ))}
-            </div>
-
-            {/* Form */}
-            <div className="lg:col-span-2">
-              {status === 'success' ? (
-                <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center space-y-4 shadow-card">
-                  <div className="flex h-14 w-14 mx-auto items-center justify-center rounded-full bg-green-500/10 border border-green-500/30">
-                    <Mail className="h-7 w-7 text-green-600" />
-                  </div>
-                  <h2 className="font-inter text-2xl font-bold text-slate-900">Message Sent!</h2>
-                  <p className="text-slate-500">
-                    We&apos;ll get back to you within 24 hours.
-                  </p>
-                  <button
-                    onClick={() => setStatus('idle')}
-                    className={cn(buttonVariants({ variant: 'outline-brand' }))}
-                  >
-                    Send Another Message
-                  </button>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="rounded-2xl border border-slate-200 bg-white p-8 space-y-6 shadow-card"
-                >
-                  <div className="grid gap-6 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="block text-sm font-medium text-slate-900">
-                        Full Name <span className="text-brand-500">*</span>
-                      </label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="John Doe"
-                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="block text-sm font-medium text-slate-900">
-                        Email <span className="text-brand-500">*</span>
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="john@example.com"
-                        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="block text-sm font-medium text-slate-900">
-                      Subject <span className="text-brand-500">*</span>
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      required
-                      value={form.subject}
-                      onChange={handleChange}
-                      className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors"
-                    >
-                      <option value="" disabled>
-                        Select a subject
-                      </option>
-                      <option value="Order Issue">Order Issue</option>
-                      <option value="Product Question">Product Question</option>
-                      <option value="Wholesale Inquiry">Wholesale Inquiry</option>
-                      <option value="Returns & Refunds">Returns &amp; Refunds</option>
-                      <option value="General Question">General Question</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="block text-sm font-medium text-slate-900">
-                      Message <span className="text-brand-500">*</span>
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={5}
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="Tell us how we can help..."
-                      className="w-full resize-none rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 transition-colors"
-                    />
-                  </div>
-
-                  {status === 'error' && (
-                    <p className="text-sm text-red-600 rounded-lg bg-red-50 border border-red-200 px-4 py-3">
-                      {errorMsg}
-                    </p>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className={cn(
-                      buttonVariants({ variant: 'primary', size: 'lg' }),
-                      'w-full disabled:opacity-60'
-                    )}
-                  >
-                    {status === 'loading' ? 'Sending...' : 'Send Message'}
-                  </button>
-                </form>
-              )}
-            </div>
+              </details>
+            ))}
           </div>
         </div>
       </section>

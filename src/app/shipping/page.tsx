@@ -103,7 +103,7 @@ export default function ShippingPage() {
               <p className="text-slate-600 leading-relaxed">
                 Visit our{' '}
                 <Link href="/contact" className="text-brand-500 hover:underline">
-                  Contact page
+                  FAQ page
                 </Link>{' '}
                 or email{' '}
                 <a href="mailto:hello@topflightboost.com" className="text-brand-500 hover:underline">

@@ -4,6 +4,7 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import CartSidebar from '@/components/layout/CartSidebar'
+import WholesaleBanner from '@/components/layout/WholesaleBanner'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -140,6 +141,7 @@ export default function RootLayout({
         <Header />
         <CartSidebar />
         <main id="main-content">{children}</main>
+        <WholesaleBanner />
         <Footer />
       </body>
     </html>

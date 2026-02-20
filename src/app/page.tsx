@@ -1,6 +1,7 @@
 import Hero from '@/components/home/Hero'
 import Marquee from '@/components/home/Marquee'
 import FeaturedProducts from '@/components/home/FeaturedProducts'
+import StoriesCarousel from '@/components/home/StoriesCarousel'
 import BenefitsSection from '@/components/home/BenefitsSection'
 import HowItWorks from '@/components/home/HowItWorks'
 import IngredientsSection from '@/components/home/IngredientsSection'
@@ -16,6 +17,7 @@ export default async function HomePage() {
       <Hero />
       <Marquee />
       <FeaturedProducts products={featuredProducts} />
+      <StoriesCarousel />
       <BenefitsSection />
       <HowItWorks />
       <IngredientsSection />

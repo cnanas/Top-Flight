@@ -6,7 +6,7 @@ const SHOP_LINKS = [
   { label: 'Shop All', href: '/products' },
   { label: 'About Us', href: '/about' },
   { label: 'Wholesale', href: '/wholesale' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'FAQ', href: '/contact' },
 ]
 
 const LEGAL_LINKS = [

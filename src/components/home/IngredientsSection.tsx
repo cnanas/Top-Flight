@@ -6,40 +6,44 @@ import { staggerContainer, fadeInUp } from '@/lib/motion'
 
 const INGREDIENTS = [
   {
-    name: 'Premium Botanical Blend',
-    dose: 'Proprietary',
+    title: 'Your Gateway to Zen-like Focus',
+    name: 'Phenibut',
+    pronunciation: 'FEE-nuh-but',
     description:
-      'Carefully sourced plant extracts for calm energy, sharper focus, and balanced mood.',
+      "Phenibut's calming effects create a focused, stress-free mind that's ready to conquer challenges.",
   },
   {
-    name: 'Vitamin B Complex',
-    dose: 'B3, B6, B12',
-    description:
-      'Supports energy metabolism and healthy brain function.',
-  },
-  {
-    name: 'Magnesium Glycinate',
-    dose: 'As magnesium glycinate',
-    description:
-      'Supports muscle and nervous system balance.',
-  },
-  {
+    title: 'Serenity Meets Laser Focus',
     name: 'L-Theanine',
-    dose: 'Functional blend',
+    pronunciation: 'el-THEE-uh-neen',
     description:
-      'Promotes relaxed alertness and complements the botanical blend.',
+      'L-Theanine within the Top Flight formula provides a calm within the laser focus.',
+  },
+  {
+    title: 'Relaxation & Social Ease',
+    name: 'Piper Methysticum (Kava)',
+    pronunciation: null,
+    description:
+      'Traditionally used in the South Pacific, kava is valued for its calming properties and ability to promote relaxation without sedation. In Top Flight, it helps encourage a smooth, grounded feeling—supporting confidence, composure, and a relaxed mindset.',
+  },
+  {
+    title: 'Mood Elevation & Presence',
+    name: 'Sceletium Tortuosum (Kanna)',
+    pronunciation: null,
+    description:
+      "Kanna is a botanical traditionally used to support mood and emotional balance. It's known for promoting a positive outlook and mental ease, helping you feel more present, uplifted, and engaged throughout the day.",
   },
 ]
 
 export default function IngredientsSection() {
   return (
-    <section className="section-padding bg-white">
+    <section id="ingredients" className="section-padding bg-white scroll-mt-20">
       <div className="section-container">
         <SectionHeading
-          eyebrow="What's Inside"
-          title="Purpose-Driven "
-          titleHighlight="Ingredients"
-          subtitle="Every ingredient in Top Flight serves a purpose. No fillers. No shortcuts."
+          eyebrow="The Science"
+          title="Behind Kava at Its "
+          titleHighlight="Finest"
+          subtitle="Top Flight is designed to support a calm, focused state of mind with smooth, balanced energy. Its thoughtfully selected blend works together to help take the edge off stress, promote mental clarity, and maintain a steady sense of momentum throughout the day."
           centered
           className="mb-14"
         />
@@ -58,12 +62,17 @@ export default function IngredientsSection() {
               transition={{ delay: i * 0.1 }}
               className="rounded-2xl border border-slate-200 bg-white p-6 space-y-3 shadow-card hover:shadow-card-hover transition-shadow"
             >
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="font-inter font-bold text-slate-900 text-lg">{ingredient.name}</h3>
-                <span className="flex-shrink-0 rounded-full bg-brand-500/10 border border-brand-500/20 px-3 py-0.5 text-xs font-semibold text-brand-500">
-                  {ingredient.dose}
-                </span>
-              </div>
+              <p className="font-inter text-sm font-semibold uppercase tracking-wider text-brand-500">
+                {ingredient.title}
+              </p>
+              <h3 className="font-inter font-bold text-slate-900 text-lg">
+                {ingredient.name}
+                {ingredient.pronunciation && (
+                  <span className="ml-2 font-normal text-slate-500 text-base">
+                    [{ingredient.pronunciation}]
+                  </span>
+                )}
+              </h3>
               <p className="text-sm text-slate-500 leading-relaxed">{ingredient.description}</p>
             </motion.div>
           ))}
