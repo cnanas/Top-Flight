@@ -65,19 +65,19 @@ export default function Hero() {
             </Link>
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="mt-14 flex items-center gap-8">
-            <div className="text-center">
-              <p className="text-3xl font-extrabold text-white">1,800mg</p>
+          <motion.div variants={fadeInUp} className="mt-14 flex items-center gap-4 sm:gap-8">
+            <div className="text-center min-w-0">
+              <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white whitespace-nowrap">1,800mg</p>
               <p className="text-xs text-white/60 mt-0.5 font-medium">Kava per bottle</p>
             </div>
-            <div className="h-10 w-px bg-white/20" />
-            <div className="text-center">
-              <p className="text-3xl font-extrabold text-white">8 hrs</p>
+            <div className="h-10 w-px bg-white/20 shrink-0" />
+            <div className="text-center min-w-0">
+              <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white whitespace-nowrap">8 hrs</p>
               <p className="text-xs text-white/60 mt-0.5 font-medium">Lasting effects</p>
             </div>
-            <div className="h-10 w-px bg-white/20" />
-            <div className="text-center">
-              <p className="text-3xl font-extrabold text-white">2 fl oz</p>
+            <div className="h-10 w-px bg-white/20 shrink-0" />
+            <div className="text-center min-w-0">
+              <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white whitespace-nowrap">2 fl oz</p>
               <p className="text-xs text-white/60 mt-0.5 font-medium">Easy shot format</p>
             </div>
           </motion.div>
