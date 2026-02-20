@@ -26,7 +26,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-brand-600 border-t border-brand-700">
+    <footer className="bg-slate-900 border-t border-white/10">
       <div className="section-container py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
 
@@ -35,9 +35,9 @@ export default function Footer() {
               <Image
                 src="/logo/Top_Flight_Logo.png"
                 alt="Top Flight Boost"
-                width={180}
-                height={45}
-                className="h-11 w-auto mb-4 brightness-0 invert"
+                width={320}
+                height={80}
+                className="h-20 w-auto mb-4 md:h-24"
               />
             </Link>
             <p className="text-white/70 text-sm leading-relaxed max-w-sm mb-6">
@@ -97,7 +97,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-brand-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/50">
             © {currentYear} Top Flight Boost. All rights reserved.
           </p>
