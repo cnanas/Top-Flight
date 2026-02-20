@@ -25,66 +25,62 @@ export default function Hero() {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-10 section-container pt-24 pb-20"
+        className="relative z-10 section-container pt-24 pb-20 min-w-0 w-full"
       >
-        <div className="grid grid-cols-3 gap-4">
-          <div className="col-span-3">
-          <motion.div variants={fadeInUp} className="mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
-              Premium Kava — 1,800mg Proprietary Blend
-            </span>
-          </motion.div>
+        <motion.div variants={fadeInUp} className="mb-6">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white backdrop-blur-sm">
+            Premium Kava — 1,800mg Proprietary Blend
+          </span>
+        </motion.div>
 
-          <motion.h1
-            variants={fadeInUp}
-            className="font-inter text-6xl font-extrabold tracking-tight leading-none text-white sm:text-7xl lg:text-8xl mb-6"
+        <motion.h1
+          variants={fadeInUp}
+          className="font-inter text-6xl font-extrabold tracking-tight leading-none text-white sm:text-7xl lg:text-8xl mb-6 max-w-4xl"
+        >
+          <span className="sm:whitespace-nowrap">Elevate Your Energy.</span>
+          <br />
+          <span className="text-gold-300">Stay In Control.</span>
+        </motion.h1>
+
+        <motion.p
+          variants={fadeInUp}
+          className="text-xl text-white/80 max-w-2xl leading-relaxed mb-8"
+        >
+          Premium botanical performance shots designed for smooth focus, steady drive, and balanced mood — without the crash.
+        </motion.p>
+
+        <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
+          <Link
+            href="/products"
+            className="inline-flex items-center justify-center gap-2 rounded-[5px] bg-white px-8 py-4 text-lg font-bold text-brand-600 hover:bg-brand-50 transition-all duration-300 shadow-lg"
           >
-            Elevate Your Energy.
-            <br />
-            <span className="text-gold-300">Stay In Control.</span>
-          </motion.h1>
-
-          <motion.p
-            variants={fadeInUp}
-            className="text-xl text-white/80 max-w-2xl leading-relaxed mb-8"
+            Shop Now
+            <ArrowRight size={20} />
+          </Link>
+          <Link
+            href="#how-it-works"
+            className="inline-flex items-center justify-center gap-2 rounded-[5px] border-2 border-white/40 px-8 py-4 text-lg font-semibold text-white hover:border-white hover:bg-white/10 transition-all duration-300"
           >
-            Premium botanical performance shots designed for smooth focus, steady drive, and balanced mood — without the crash.
-          </motion.p>
+            See How It Works
+          </Link>
+        </motion.div>
 
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/products"
-              className="inline-flex items-center justify-center gap-2 rounded-[5px] bg-white px-8 py-4 text-lg font-bold text-brand-600 hover:bg-brand-50 transition-all duration-300 shadow-lg"
-            >
-              Shop Now
-              <ArrowRight size={20} />
-            </Link>
-            <Link
-              href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 rounded-[5px] border-2 border-white/40 px-8 py-4 text-lg font-semibold text-white hover:border-white hover:bg-white/10 transition-all duration-300"
-            >
-              See How It Works
-            </Link>
-          </motion.div>
-
-          <motion.div variants={fadeInUp} className="mt-14 flex items-center gap-4 sm:gap-8">
-            <div className="text-center min-w-0">
-              <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white whitespace-nowrap">1,800mg</p>
-              <p className="text-xs text-white/60 mt-0.5 font-medium">Kava per bottle</p>
-            </div>
-            <div className="h-10 w-px bg-white/20 shrink-0" />
-            <div className="text-center min-w-0">
-              <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white whitespace-nowrap">8 hrs</p>
-              <p className="text-xs text-white/60 mt-0.5 font-medium">Lasting effects</p>
-            </div>
-            <div className="h-10 w-px bg-white/20 shrink-0" />
-            <div className="text-center min-w-0">
-              <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white whitespace-nowrap">2 fl oz</p>
-              <p className="text-xs text-white/60 mt-0.5 font-medium">Easy shot format</p>
-            </div>
-          </motion.div>
+        <motion.div variants={fadeInUp} className="mt-14 flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+          <div className="text-center min-w-0">
+            <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white">1,800mg</p>
+            <p className="text-sm text-white/60 mt-0.5 font-medium">Kava per bottle</p>
           </div>
-        </div>
+          <div className="hidden sm:block h-10 w-px bg-white/20 shrink-0" />
+          <div className="text-center min-w-0">
+            <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white">8 hrs</p>
+            <p className="text-sm text-white/60 mt-0.5 font-medium">Lasting effects</p>
+          </div>
+          <div className="hidden sm:block h-10 w-px bg-white/20 shrink-0" />
+          <div className="text-center min-w-0">
+            <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white">2 fl oz</p>
+            <p className="text-sm text-white/60 mt-0.5 font-medium">Easy shot format</p>
+          </div>
+        </motion.div>
       </motion.div>
 
       <motion.div
