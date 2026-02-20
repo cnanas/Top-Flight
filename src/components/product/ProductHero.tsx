@@ -40,13 +40,23 @@ export default function ProductHero({ product, initialVariantId }: ProductHeroPr
     const next = initialVariantId
       ? variants.find((v) => v.id === initialVariantId)
       : variants[0]
-    if (next) setSelectedVariant(next)
+    if (next) {
+      setSelectedVariant(next)
+      // Sync gallery selection to variant's image when variant changes
+      if (next.image && images.length > 1) {
+        const idx = images.findIndex((img) => img.url === next.image?.url)
+        if (idx >= 0) setSelectedImageIndex(idx)
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialVariantId, product.id])
 
+  // Prefer gallery selection so thumbnail clicks update the main image
   const mainImage =
+    images[selectedImageIndex] ??
     selectedVariant?.image ??
-    (images[selectedImageIndex] ?? product.featuredImage ?? null)
+    product.featuredImage ??
+    null
 
   const onSale = isOnSale(selectedVariant)
   const discount = discountPercent(
@@ -67,7 +77,7 @@ export default function ProductHero({ product, initialVariantId }: ProductHeroPr
                 src={mainImage.url}
                 alt={mainImage.altText ?? product.title}
                 fill
-                className="object-cover"
+                className="object-contain"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
@@ -101,7 +111,7 @@ export default function ProductHero({ product, initialVariantId }: ProductHeroPr
                     src={img.url}
                     alt={img.altText ?? `Product image ${i + 1}`}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="80px"
                   />
                 </button>
@@ -176,7 +186,13 @@ export default function ProductHero({ product, initialVariantId }: ProductHeroPr
                     <button
                       key={variant.id}
                       type="button"
-                      onClick={() => setSelectedVariant(variant)}
+                      onClick={() => {
+                        setSelectedVariant(variant)
+                        if (variant.image && images.length > 1) {
+                          const idx = images.findIndex((img) => img.url === variant.image?.url)
+                          if (idx >= 0) setSelectedImageIndex(idx)
+                        }
+                      }}
                       disabled={!variant.availableForSale}
                       className={`relative flex flex-shrink-0 flex-col items-center gap-2 rounded-2xl border-2 p-2 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 min-w-[100px] ${
                         isSelected
@@ -194,7 +210,7 @@ export default function ProductHero({ product, initialVariantId }: ProductHeroPr
                             src={variantImage.url}
                             alt={variantImage.altText ?? optionLabel}
                             fill
-                            className="object-cover"
+                            className="object-contain"
                             sizes="80px"
                           />
                         ) : (
